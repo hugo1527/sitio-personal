@@ -25,10 +25,13 @@ export function Layout({ children, profile }: LayoutProps) {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="col-span-1 md:col-span-5 flex flex-col justify-center space-y-6 md:border-r md:border-slate-200 md:pr-12 md:text-left text-center items-center md:items-start"
           >
-            {/* Elegant Lettermark Monogram "D" from theme */}
-            <div className="w-24 h-24 bg-slate-900 flex items-center justify-center rounded-sm mb-2 border border-slate-950 shadow-md transform hover:rotate-3 transition-transform duration-300">
-              <span className="text-white font-serif text-5xl font-light tracking-tight select-none">D</span>
-            </div>
+            {/* Elegant Lettermark Monogram "D" from theme / Custom logo.jpeg */}
+            <img 
+              src="/logo.jpeg" 
+              alt="Logo Estudio Jurídico Dra. Debora Sayavedra" 
+              referrerPolicy="no-referrer"
+              className="w-24 h-24 object-cover rounded-sm mb-2 border border-slate-950 shadow-md transform hover:rotate-3 transition-transform duration-300"
+            />
 
             {/* Title Block */}
             <div className="space-y-2">
@@ -83,7 +86,7 @@ export function Layout({ children, profile }: LayoutProps) {
       {/* Footer conforming to Professional Polish guidelines */}
       <footer className="w-full max-w-4xl mx-auto text-center mt-16 pt-8 border-t border-slate-200">
         <p className="font-sans text-[10px] text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors duration-300">
-          © {new Date().getFullYear()} Estudio Jurídico • Dra. Debora
+          © {new Date().getFullYear()} Estudio Jurídico • Dra. Debora Sayavedra
         </p>
         <p className="text-[9px] text-slate-400 mt-1 uppercase tracking-wider">
           asesoría legal integral • capacitaciones profesionales

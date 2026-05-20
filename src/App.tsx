@@ -6,7 +6,7 @@ import { UserProfile, LinkItem } from './types';
 
 // Profile data for Debora including professional email
 const profileData: UserProfile = {
-  name: "Dra. Debora",
+  name: "Dra. Debora Sayavedra",
   title: "Abogada de Estudio Jurídico",
   firm: "Asesoría Legal Integral & Académica",
   bio: "Especialista en Derecho Civil, Comercial y de Familia. Comprometida con brindar soluciones jurídicas claras y capacitar a la próxima generación de profesionales del derecho.",
@@ -20,7 +20,7 @@ const linksData: LinkItem[] = [
     id: "whatsapp-consultation",
     title: "Presione Aquí Para Iniciar Consulta Legal",
     description: "Atención inmediata para asesoramientos corporativos, audiencias procesales y redacción contractual.",
-    url: "https://wa.me/5491112345678?text=Hola%20Dra.%20Debora,%20necesito%20realizar%20una%20consulta%20legal",
+    url: "https://wa.me/5491112345678?text=Hola%20Dra.%20Debora%20Sayavedra,%20necesito%20realizar%20una%20consulta%20legal",
     type: "whatsapp",
     icon: "whatsapp"
   },
