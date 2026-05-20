@@ -1,0 +1,6 @@
+{
+  "name": "Debora - Abogada de Estudio Jurídico",
+  "description": "Sitio personal de Debora con enlaces a sus cursos, redes sociales y contacto de WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

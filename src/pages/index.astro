@@ -1,11 +1,193 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import CourseButton from '../components/CourseButton.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Datos de Debora para renderizar en el HTML de Astro
+const name = "Dra. Debora";
+const title = "Abogada de Estudio Jurídico";
+const firm = "Asesoría Legal Integral & Académica";
+const bio = "Especialista en Derecho Civil, Comercial y de Familia. Comprometida con brindar soluciones jurídicas claras y capacitar a la próxima generación de profesionales del derecho.";
+const location = "Buenos Aires, Argentina";
+const email = "contacto@estudiodebora.com.ar";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Dra. Debora - Abogada de Estudio Jurídico">
+	<div class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-stretch">
+			
+			<!-- Left Column: Lawyer Card Profile -->
+			<header class="col-span-1 md:col-span-12 lg:col-span-5 flex flex-col justify-center space-y-6 md:border-r md:border-slate-200 md:pr-12 md:text-left text-center items-center md:items-start">
+				<!-- Elegant Lettermark Monogram "D" from theme -->
+				<div class="w-24 h-24 bg-slate-900 flex items-center justify-center rounded-sm mb-2 border border-slate-950 shadow-md">
+					<span class="text-white font-serif text-5xl font-light tracking-tight select-none">D</span>
+				</div>
+
+				<!-- Title Block -->
+				<div class="space-y-2">
+					<h1 class="font-serif text-4.5xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
+						{name}
+					</h1>
+					<p class="text-amber-700 font-semibold tracking-[0.2em] uppercase text-xs mt-1">
+						{title}
+					</p>
+					{firm && (
+						<p class="text-slate-400 font-sans font-medium text-[10px] uppercase tracking-widest mt-1">
+							{firm}
+						</p>
+					)}
+				</div>
+
+				<!-- Editorial Bio Description -->
+				<p class="text-slate-600 leading-relaxed text-sm font-sans text-center md:text-left max-w-xs">
+					{bio}
+				</p>
+
+				<!-- Direct Contact Details Block -->
+				<div class="w-full flex flex-col space-y-3 pt-6 border-t border-slate-200/80 items-center md:items-start">
+					{email && (
+						<div class="flex items-center space-x-3 text-slate-500">
+							<svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+							</svg>
+							<span class="text-xs select-all font-mono">{email}</span>
+						</div>
+					)}
+					{location && (
+						<div class="flex items-center space-x-3 text-slate-500">
+							<svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+								<path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+							</svg>
+							<span class="text-xs">{location}</span>
+						</div>
+					)}
+				</div>
+			</header>
+
+			<!-- Right Column: Interactive links list & academic courses -->
+			<div class="col-span-1 md:col-span-12 lg:col-span-7 flex flex-col justify-center space-y-8 text-left">
+				
+				<!-- Section 1: Formación & Cursos -->
+				<div>
+					<h2 class="text-slate-400 uppercase tracking-widest text-[10px] font-bold mb-4">
+						Formación & Cursos
+					</h2>
+					<div class="flex flex-col gap-4">
+						<CourseButton 
+							title="Curso Práctico: Redacción de Contratos" 
+							subtitle="Programa Intensivo de 4 Semanas"
+							description="Aprenda las cláusulas críticas, garantías e interpretación de contratos comerciales desde el ejercicio real de la abogacía."
+							url="https://www.example.com/cursos/redaccion-contratos"
+							badge="Últimos Cupos"
+							price="Matrícula Bonificada - 50% Off"
+						/>
+
+						<CourseButton 
+							title="Litigo & Práctica en Civil y Comercial" 
+							subtitle="Taller Práctico Orientado a Audiencias"
+							description="Confección de demandas, análisis de pruebas, contestaciones y técnicas de litigación oral efectivas."
+							url="https://www.example.com/cursos/litigio-civil-comercial"
+							badge="Nueva Cohorte"
+							price="Acceso de por vida + Modelos Descargables"
+						/>
+
+						<CourseButton 
+							title="Taller Especializado: Negociación Civil" 
+							subtitle="Resolución Alternativa de Conflictos"
+							description="Herramientas estratégicas para cerrar conciliaciones seguras y eficientes reduciendo los plazos judiciales."
+							url="https://www.example.com/cursos/negociacion-convenios"
+							price="Certificación Incluida"
+						/>
+					</div>
+				</div>
+
+				<!-- Section 2: Canales de Comunicación -->
+				<div>
+					<h2 class="text-slate-400 uppercase tracking-widest text-[10px] font-bold mb-4">
+						Canales de Comunicación
+					</h2>
+					<div class="flex flex-col gap-4">
+						<!-- Canal de WhatsApp Destacado -->
+						<a
+							href="https://wa.me/5491112345678?text=Hola%20Dra.%20Debora,%20necesito%20realizar%20una%20consulta%20legal"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group flex items-center justify-between p-5 bg-slate-900 text-white border border-slate-950 hover:bg-slate-950 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+						>
+							<div class="flex items-center gap-3.5">
+								<div class="p-2.5 bg-slate-800 rounded-lg border border-slate-700 group-hover:border-slate-600 transition-colors duration-300">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-emerald-400"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+								</div>
+								<div class="text-left">
+									<span class="text-[9px] font-bold text-emerald-400 uppercase tracking-[0.2em] block font-sans">Atención directa</span>
+									<span class="text-[15px] font-sans font-bold text-white block mt-0.5">Consulta Legal Inmediata</span>
+									<span class="text-xs text-slate-300 block mt-1 font-sans leading-relaxed">Inicie un asesoramiento jurídico por chat ahora</span>
+								</div>
+							</div>
+							<div class="flex items-center gap-2">
+								<span class="relative flex h-2.5 w-2.5">
+									<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+									<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+								</span>
+								<span class="text-xs text-emerald-400 font-bold font-sans tracking-wide">Online</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5 text-emerald-400/80 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-200"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+							</div>
+						</a>
+
+						<!-- LinkedIn -->
+						<a
+							href="https://www.linkedin.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group flex items-center justify-between p-4 bg-white border border-slate-205 hover:border-slate-900 rounded-lg transition-all duration-300 shadow-sm text-left"
+						>
+							<div class="flex items-center gap-3.5">
+								<div class="p-2 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-slate-200 transition-colors duration-300">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-700"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+								</div>
+								<div>
+									<span class="text-sm font-sans font-bold text-slate-700 group-hover:text-slate-900 transition-colors duration-200 block">LinkedIn Profesional</span>
+									<span class="text-xs text-slate-400 block mt-0.5 font-sans">Contacto corporativo y artículos de opinión jurídica</span>
+								</div>
+							</div>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-slate-400 group-hover:text-slate-900 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+						</a>
+
+						<!-- Instagram -->
+						<a
+							href="https://www.instagram.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group flex items-center justify-between p-4 bg-white border border-slate-205 hover:border-slate-900 rounded-lg transition-all duration-300 shadow-sm text-left"
+						>
+							<div class="flex items-center gap-3.5">
+								<div class="p-2 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-slate-200 transition-colors duration-300">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-700"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+								</div>
+								<div>
+									<span class="text-sm font-sans font-bold text-slate-700 group-hover:text-slate-900 transition-colors duration-200 block">Instagram Jurídico</span>
+									<span class="text-xs text-slate-400 block mt-0.5 font-sans">Novedades legislativas diarias y detrás de escena del estudio</span>
+								</div>
+							</div>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-slate-400 group-hover:text-slate-900 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+						</a>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Footer global -->
+	<footer class="w-full max-w-4xl mx-auto text-center mt-16 pt-8 border-t border-slate-200">
+		<p class="font-sans text-[10px] text-slate-400 uppercase tracking-widest">
+			© {new Date().getFullYear()} Estudio Jurídico • Dra. Debora
+		</p>
+		<p class="text-[9px] text-slate-400 mt-1 uppercase tracking-wider">
+			asesoría legal integral • capacitaciones profesionales
+		</p>
+	</footer>
 </Layout>

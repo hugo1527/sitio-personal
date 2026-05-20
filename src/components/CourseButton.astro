@@ -1,0 +1,66 @@
+---
+// src/components/CourseButton.astro
+interface Props {
+	title: string;
+	subtitle?: string;
+	description?: string;
+	url: string;
+	badge?: string;
+	price?: string;
+}
+
+const { title, subtitle, description, url, badge, price } = Astro.props;
+---
+
+<a
+	href={url}
+	target="_blank"
+	rel="noopener noreferrer"
+	class="group relative flex flex-col p-5 bg-white border border-slate-250 hover:border-slate-900 rounded-lg transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 block text-left"
+>
+	<div class="flex items-start gap-4">
+		<!-- Icono elegante (libro/grado) -->
+		<div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-slate-200 group-hover:bg-slate-100 transition-colors duration-300">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-amber-700 group-hover:scale-110 transition-transform duration-300">
+				<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+				<path d="M6 6h10"></path>
+				<path d="M6 10h10"></path>
+			</svg>
+		</div>
+		
+		<div class="flex-1 min-w-0">
+			<div class="flex items-center gap-2 flex-wrap">
+				<h3 class="text-[15px] font-sans font-bold text-slate-800 group-hover:text-slate-950 transition-colors duration-200">
+					{title}
+				</h3>
+				{badge && (
+					<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[9px] font-sans font-extrabold bg-slate-100 text-slate-700 border border-slate-200 uppercase tracking-widest whitespace-nowrap">
+						{badge}
+					</span>
+				)}
+			</div>
+			
+			{subtitle && (
+				<p class="text-xs font-serif text-amber-800 italic mt-0.5">
+					{subtitle}
+				</p>
+			)}
+			
+			{description && (
+				<p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed font-sans">
+					{description}
+				</p>
+			)}
+
+			{price && (
+				<div class="text-xs font-sans font-semibold text-amber-700 mt-2 block tracking-wide">
+					{price}
+				</div>
+			)}
+		</div>
+		
+		<div class="self-center p-1 bg-white rounded-full border border-slate-205 text-slate-300 group-hover:text-slate-800 group-hover:border-slate-400 transition-all duration-300">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform"><path d="m9 18 6-6-6-6"></path></svg>
+		</div>
+	</div>
+</a>
