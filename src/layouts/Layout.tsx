@@ -9,12 +9,22 @@ interface LayoutProps {
 
 export function Layout({ children, profile }: LayoutProps) {
   return (
-    <div className="min-h-screen legal-pattern text-slate-800 flex flex-col justify-between py-12 px-6 sm:px-12 selection:bg-slate-950 selection:text-white">
+    <div className="min-h-screen legal-pattern text-slate-800 flex flex-col justify-between py-12 px-6 sm:px-12 selection:bg-slate-950 selection:text-white relative overflow-x-hidden">
       {/* Elegantly placed top ambient light accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-96 bg-gold-400/5 rounded-full blur-[120px] pointer-events-none" />
 
+      {/* Centered Background Watermark (Logo opacity 0.045) */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden mix-blend-multiply opacity-[0.25]">
+        <img 
+          src="/piedra.jpg" 
+          alt="" 
+          referrerPolicy="no-referrer"
+          className="w-full max-w-full md:max-w-7xl h-auto object-contain select-none pointer-events-none filter grayscale"
+        />
+      </div>
+
       {/* Main Grid Wrapper */}
-      <div className="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+      <div className="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-stretch">
           
           {/* Left Column: Lawyer Card Profile */}
@@ -84,7 +94,7 @@ export function Layout({ children, profile }: LayoutProps) {
       </div>
 
       {/* Footer conforming to Professional Polish guidelines */}
-      <footer className="w-full max-w-4xl mx-auto text-center mt-16 pt-8 border-t border-slate-200">
+      <footer className="w-full max-w-4xl mx-auto text-center mt-16 pt-8 border-t border-slate-200 relative z-10">
         <p className="font-sans text-[10px] text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors duration-300">
           © {new Date().getFullYear()} Estudio Jurídico • Dra. Debora Sayavedra
         </p>

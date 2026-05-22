@@ -37,20 +37,37 @@ export function LinkButton({ item }: LinkButtonProps) {
   };
 
   if (item.type === 'course') {
+    const shareTextTwitter = `Curso de la Dra. Debora Sayavedra - "${item.title}"`;
+    const shareUrlTwitter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTextTwitter)}&url=${encodeURIComponent(item.url)}`;
+
+    const shareUrlLinkedIn = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(item.url)}`;
+
+    const shareTextWhatsApp = `¡Hola! Te recomiendo este excelente curso de la Dra. Debora Sayavedra: *${item.title}* ${item.subtitle ? `(${item.subtitle})` : ''} - ${item.url}`;
+    const shareUrlWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTextWhatsApp)}`;
+
     return (
-      <motion.a
+      <motion.div
         id={`course-item-${item.id}`}
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative flex flex-col p-5 bg-white border border-slate-200 hover:border-slate-900 rounded-lg transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 block text-left"
-        whileTap={{ scale: 0.99 }}
+        className="group relative flex flex-col bg-white border border-slate-200 hover:border-slate-900 rounded-lg overflow-hidden text-left"
+        whileHover={{ 
+          y: -5, 
+          boxShadow: "0 12px 24px -10px rgba(15, 23, 42, 0.12), 0 4px 8px -2px rgba(15, 23, 42, 0.04)"
+        }}
+        whileTap={{ scale: 0.985 }}
+        transition={{ type: "spring", stiffness: 450, damping: 22 }}
+        layout
       >
-        <div className="flex items-start gap-4">
-          {/* Subtle minimal background for icons layout */}
-          <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-slate-200 group-hover:bg-slate-100 transition-colors duration-300">
-            {renderIcon()}
-          </div>
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-5 flex-1 block"
+        >
+          <div className="flex items-start gap-4">
+            {/* Subtle minimal background for icons layout */}
+            <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-slate-200 group-hover:bg-slate-100 transition-colors duration-300 shrink-0">
+              {renderIcon()}
+            </div>
           
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
@@ -84,11 +101,56 @@ export function LinkButton({ item }: LinkButtonProps) {
             )}
           </div>
           
-          <div className="self-center p-1 bg-white rounded-full border border-slate-200 text-slate-300 group-hover:text-slate-800 group-hover:border-slate-400 transition-all duration-300">
+          <div className="self-center p-1 bg-white rounded-full border border-slate-200 text-slate-300 group-hover:text-slate-800 group-hover:border-slate-400 transition-all duration-300 shrink-0">
             <ChevronRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+        </a>
+
+        {/* Barra de compartir en redes sociales */}
+        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-between gap-2 z-10">
+          <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-slate-400">
+            Compartir capacitación:
+          </span>
+          <div className="flex items-center gap-1.5">
+            {/* WhatsApp */}
+            <a
+              href={shareUrlWhatsApp}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Compartir por WhatsApp"
+              className="flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-sans font-medium text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-250 cursor-pointer"
+            >
+              <MessageSquare className="w-3 h-3 text-emerald-500" />
+              <span>WhatsApp</span>
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href={shareUrlLinkedIn}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Compartir en LinkedIn"
+              className="flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-sans font-medium text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-250 cursor-pointer"
+            >
+              <Linkedin className="w-3 h-3 text-blue-600" />
+              <span>LinkedIn</span>
+            </a>
+
+            {/* Twitter / X */}
+            <a
+              href={shareUrlTwitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Compartir en X / Twitter"
+              className="flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-sans font-medium text-slate-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all duration-250 cursor-pointer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+              <span>Twitter</span>
+            </a>
           </div>
         </div>
-      </motion.a>
+      </motion.div>
     );
   }
 
@@ -99,8 +161,13 @@ export function LinkButton({ item }: LinkButtonProps) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-between p-5 bg-slate-900 text-white border border-slate-950 hover:bg-slate-950 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-left"
-        whileTap={{ scale: 0.99 }}
+        className="group flex items-center justify-between p-5 bg-slate-900 text-white border border-slate-950 hover:bg-slate-950 rounded-lg text-left transition-colors duration-200"
+        whileHover={{ 
+          y: -4, 
+          boxShadow: "0 12px 24px -10px rgba(15, 23, 42, 0.45), 0 4px 8px -2px rgba(15, 23, 42, 0.25)"
+        }}
+        whileTap={{ scale: 0.985 }}
+        transition={{ type: "spring", stiffness: 450, damping: 22 }}
       >
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-slate-800 rounded-lg border border-slate-700 group-hover:border-slate-600 transition-colors duration-300">
@@ -139,8 +206,13 @@ export function LinkButton({ item }: LinkButtonProps) {
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center justify-between p-4 bg-white border border-slate-200 hover:border-slate-900 rounded-lg transition-all duration-300 shadow-sm text-left"
-      whileTap={{ scale: 0.99 }}
+      className="group flex items-center justify-between p-4 bg-white border border-slate-200 hover:border-slate-900 rounded-lg text-left transition-colors duration-200"
+      whileHover={{ 
+        y: -3, 
+        boxShadow: "0 10px 18px -4px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.02)"
+      }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ type: "spring", stiffness: 450, damping: 22 }}
     >
       <div className="flex items-center gap-3.5">
         <div className="p-2 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-slate-200 transition-colors duration-300">
